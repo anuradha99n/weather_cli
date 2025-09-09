@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Set coordinates (Colombo, Sri Lanka as example)
-# LAT=6.9271
-# LON=79.8612
-
 # Get location automatically from IP
 LOC=$(curl -s http://ip-api.com/json)
 LAT=$(echo "$LOC" | jq -r '.lat')
