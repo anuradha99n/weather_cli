@@ -1,8 +1,15 @@
 #!/bin/bash
 
 # Set coordinates (Colombo, Sri Lanka as example)
-LAT=6.9271
-LON=79.8612
+# LAT=6.9271
+# LON=79.8612
+
+# Get location automatically from IP
+LOC=$(curl -s http://ip-api.com/json)
+LAT=$(echo "$LOC" | jq -r '.lat')
+LON=$(echo "$LOC" | jq -r '.lon')
+CITY=$(echo "$LOC" | jq -r '.city')
+COUNTRY=$(echo "$LOC" | jq -r '.country')
 
 # API URL
 URL="https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current=temperature_2m,relative_humidity_2m,wind_speed_10m&timezone=auto"
@@ -38,14 +45,15 @@ while true; do
     fi
 
     # Display weather info
-    echo "🌤️  Current Weather (Colombo, Sri Lanka)"
+    echo "🌍 Location    : $CITY, $COUNTRY"
+    echo "🌤️  Current Weather"
     echo "--------------------------------------"
     echo "⏰ Time       : $TIME"
     echo "🌡️ Temperature: $TEMP °C"
     echo "💧 Humidity   : $HUMIDITY %"
     echo "🌬️ Wind Speed : $WIND km/h"
     echo "--------------------------------------"
-    echo "🔄 Updates every 5 min (time refresh every sec)"
+    # echo "🔄 Updates every 5 min (time refresh every sec)"
 
     sleep 1
 done
