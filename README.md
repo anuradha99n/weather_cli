@@ -26,4 +26,4 @@ A simple Bash script to fetch and display weather information for your current l
 - jq
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL V3 License. See the [LICENSE](LICENSE) file for details.
